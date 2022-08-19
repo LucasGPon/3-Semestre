@@ -17,7 +17,6 @@ public class App {
         System.out.println("Digite o quarto valor: ");
         int num4 = ler.nextInt();
 
-    
         System.out.println("Primeiro numero: " + t.positivoNegativo(num1));
 
         System.out.println("Produtos dos 1° 2° 3° valores: " + t.retornaProduto(num1, num2, num3));
@@ -25,7 +24,9 @@ public class App {
         System.out.println("Produtos dos 4 valores: " + t.mediaAritmetica(num1, num2, num3, num4));
 
         System.out.println("Primeiro numero: " + t.parImpar(num1));
-        
+
+        System.out.println("Potencia numero 1 e numero 2: " + t.potencias(num1, num2));
+
         ler.close();
     }
 }
