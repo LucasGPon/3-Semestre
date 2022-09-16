@@ -1,0 +1,5 @@
+package Publico;
+
+class FuncoesUteis {
+    
+}
