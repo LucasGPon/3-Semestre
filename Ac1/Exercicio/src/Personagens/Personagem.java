@@ -1,48 +1,29 @@
 package Personagens;
 
 public class Personagem {
+    private String tipo;
     private String nome;
+    private String arma;
     private float vida;
     private float nivelExp;
 
     @Override
     public String toString() {
-        return "Personagem [nivelExp=" + nivelExp + ", nome=" + nome + ", vida=" + vida + "]";
+        return "Tipo: " + tipo + "\nNome: " + nome + "\nArma: " + arma + "\nVida: " + vida + "\nNivel Experiência: "
+                + nivelExp;
     }
 
-    public Personagem(String nome, float vida, float nivelExp) {
+    public Personagem(String tipo, String nome, String arma, float vida, float nivelExp) {
+        this.tipo = tipo;
         this.nome = nome;
+        this.arma = arma;
         this.vida = vida;
-        this.nivelExp = nivelExp;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public float getVida() {
-        return vida;
-    }
-
-    public void setVida(float vida) {
-        this.vida = vida;
-    }
-
-    public float getNivelExp() {
-        return nivelExp;
-    }
-
-    public void setNivelExp(float nivelExp) {
         this.nivelExp = nivelExp;
     }
 
     public void ataque() {
         this.nivelExp += 1;
-        System.out.println("O " + this.nome + " Atacou");
+        System.out.println("O " + this.tipo + " " + this.nome + " Atacou o inimigo com " + arma);
     }
 
     public void sofrerAtaque(float dano) throws Exception {
@@ -50,7 +31,6 @@ public class Personagem {
             if (dano <= 0) {
                 throw new Exception("Dano menor ou igual a zero!!!");
             }
-            morrer();
         }
         this.vida -= dano;
     }
@@ -62,10 +42,11 @@ public class Personagem {
         this.vida += ganho;
     }
 
-    public void morrer() {
-        if (this.vida <= 0) {
-            System.out.println("O " + this.nome + " Morreu");
+    boolean morrer() {
+        if (this.vida > 0) {
+
         }
+        return false;
     }
 
 }
