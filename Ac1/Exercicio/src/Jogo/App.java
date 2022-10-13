@@ -1,3 +1,4 @@
+package Jogo;
 
 import Personagens.Arqueiro;
 import Personagens.Guerreiro;
@@ -15,6 +16,8 @@ public class App {
             System.out.println(mago.toString());
             guerreiro.sofrerAtaque(20);
             System.out.println(guerreiro.toString());
+            arqueiro.restaurarVida(2);
+            System.out.println(arqueiro.toString());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
