@@ -1,68 +1,100 @@
 package Etinerario;
 
-public class Viagem {
-    private String cidOrigem;
-    private String cidDestino;
-    private float distancia;
-    private String veiculo;
-    private String condutor;
+import java.util.List;
 
-    public Viagem(String cidOrigem, String cidDestino, float distancia, String veiculo, String condutor) {
+import Veiculos.Veiculo;
+
+public class Viagem implements Comparable<Viagem> {
+    private String cidOrigem, cidDestino;
+    private float distancia, diaria, valorCombustivel;
+    private Veiculo veiculos;
+    private Condutor condutores;
+
+    public Viagem(String cidOrigem, String cidDestino, float distancia, float valorCombustivel,
+            Veiculo veiculos, Condutor condutores) throws Exception {
         setCidOrigem(cidOrigem);
         setCidDestino(cidDestino);
         setDistancia(distancia);
-        setVeiculo(veiculo);
-        setCondutor(condutor);
+        setVeiculos(veiculos);
+        setCondutores(condutores);
+        setValorCombustivel(valorCombustivel);
     }
 
-    public void custo() {
-
+    private float custo() {
+        if (distancia > 0) {
+            diaria = 100;
+            if (distancia >= 700) {
+                diaria++;
+            }
+        }
+        return veiculos.gastoCombustivel(distancia, valorCombustivel) + diaria;
     }
 
-    public String getCidOrigem() {
-        return cidOrigem;
-    }
-
-    public void setCidOrigem(String cidOrigem) {
-        this.cidOrigem = cidOrigem;
+    @Override
+    public int compareTo(Viagem v) {
+        return (int) (this.custo() - v.custo());
     }
 
     public String getCidDestino() {
         return cidDestino;
     }
 
-    public void setCidDestino(String cidDestino) {
-        this.cidDestino = cidDestino;
+    public String getCidOrigem() {
+        return cidOrigem;
     }
 
     public float getDistancia() {
         return distancia;
     }
 
-    public void setDistancia(float distancia) {
+    public Veiculo getVeiculos() {
+        return veiculos;
+    }
+
+    public Condutor getCondutores() {
+        return condutores;
+    }
+
+    public void setCidOrigem(String cidOrigem) throws Exception {
+        if (cidOrigem == null)
+            throw new Exception("Informar a cidade de origem!!!");
+        this.cidOrigem = cidOrigem;
+    }
+
+    public void setCidDestino(String cidDestino) throws Exception {
+        if (cidDestino == null)
+            throw new Exception("Informar a cidade destino!!!");
+        this.cidDestino = cidDestino;
+    }
+
+    public void setDistancia(float distancia) throws Exception {
+        if (distancia <= 0)
+            throw new Exception("Informar a distância!!!");
         this.distancia = distancia;
     }
 
-    public String getVeiculo() {
-        return veiculo;
+    public void setValorCombustivel(float valorCombustivel) throws Exception {
+        if (valorCombustivel <= 0)
+            throw new Exception("Informar o valor do combustivel!!!");
+
+        this.valorCombustivel = valorCombustivel;
     }
 
-    public void setVeiculo(String veiculo) {
-        this.veiculo = veiculo;
+    public void setVeiculos(Veiculo veiculos) throws Exception {
+        if (veiculos == null)
+            throw new Exception("Informar o veiculo que será utilizado na viagem!!!");
+        this.veiculos = veiculos;
     }
 
-    public String getCondutor() {
-        return condutor;
-    }
-
-    public void setCondutor(String condutor) {
-        this.condutor = condutor;
+    public void setCondutores(Condutor condutores) throws Exception {
+        if (condutores == null)
+            throw new Exception("Informar o condutor da viagem!!!");
+        this.condutores = condutores;
     }
 
     @Override
     public String toString() {
-        return "Viagem [cidOrigem=" + cidOrigem + ", cidDestino=" + cidDestino + ", distancia=" + distancia
-                + ", veiculo=" + veiculo + ", condutor=" + condutor + "]";
+        return "\nOrigem: " + cidOrigem + "\nDestino: " + cidDestino + "\nCusto: " + custo();
     }
 
 }

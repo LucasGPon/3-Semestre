@@ -1,28 +1,27 @@
 package Veiculos;
 
 public interface Veiculo {
-    
-    public void gastoCombustivel(float distancia, float valorCombustivel);
 
-    public float getCombustivel();
+    public float gastoCombustivel(float distancia, float valorCombustivel);
+
+    public String getCombustivel();
 
     public float getConsumo();
 
     public String getPlaca();
 
-    public String getNome();
-
     public String getTipo();
 
-    public void setNome(String nome);
+    public String getNome();
 
-    public void setTipo(String tipo);
+    public void setCombustivel(String combustivel) throws Exception;
 
-    public void setCombustivel(float combustivel);
+    public void setConsumo(float consumo) throws Exception;
 
-    public void setConsumo(float consumo);
+    public void setPlaca(String placa) throws Exception;
 
-    public void setPlaca(String placa);
+    public void setTipo(String tipo) throws Exception;
 
-    
+    public void setNome(String nome) throws Exception;
+
 }
